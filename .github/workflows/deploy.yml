@@ -1,0 +1,62 @@
+name: Deploy Rails App to Lightsail
+
+on:
+  push:
+    branches: ["main"] # deploy only on main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # # 1. Checkout code
+      # # - name: Checkout repository
+      # #   uses: actions/checkout@v4
+
+      # # 2. Setup Ruby
+      # - name: Set up Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.3 # adjust to your Rails version
+      #     bundler-cache: true
+
+      # # 3. Install dependencies
+      # - name: Install dependencies
+      #   run: |
+      #     gem install bundler
+      #     bundle install
+      #     yarn install --frozen-lockfile
+
+      # # 4. Build assets (Rails 8 esbuild)
+      # - name: Build assets
+      #   run: |
+      #     RAILS_ENV=production bin/rails assets:precompile
+
+      # # 5. Deploy to Lightsail via SSH
+      # - name: Deploy to Lightsail
+      #   uses: appleboy/ssh-action@v1.2.0
+      #   with:
+      #     host: ${{ secrets.LIGHTSAIL_HOST }}
+      #     username: ${{ secrets.LIGHTSAIL_USER }}
+      #     key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+      #     script: |
+      #       cd /home/ubuntu/myapp || exit 1
+
+      #       # Pull latest code
+      #       git fetch origin main
+      #       git reset --hard origin/main
+
+      #       # Install Ruby gems
+      #       bundle install --deployment --without development test
+
+      #       # Install JS deps
+      #       yarn install --frozen-lockfile
+
+      #       # Precompile assets
+      #       RAILS_ENV=production bin/rails assets:precompile
+
+      #       # Run migrations (skip if no DB)
+      #       RAILS_ENV=production bin/rails db:migrate || true
+
+      #       # Restart application (Puma/Passenger/etc.)
+      #       sudo systemctl restart puma # or passenger/nginx depending on setup
