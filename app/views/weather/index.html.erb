@@ -8,3 +8,12 @@
 	  <%= f.submit "Get Forecast" %>
 	<% end %>
 </div>
+
+<hr>
+
+<div id="weather-result">
+  <%# Initial weather display placeholder %>
+  <% if @weather %>
+    <%= render partial: 'weather/forecast_result', locals: { weather: @weather, from_cache: @from_cache } %>
+  <% end %>
+</div>
